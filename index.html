@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Будь моей валентинкой ❤️</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Будь моей Валентинкой ❤️</title>
   <style>
     body {
       height: 100vh;
+      margin: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -13,55 +15,86 @@
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #ffafbd, #ffc3a0);
       overflow: hidden;
+      padding: 24px;
+      box-sizing: border-box;
     }
 
     h1 {
       color: #fff;
-      margin-bottom: 40px;
       text-align: center;
+      max-width: 900px;
+      line-height: 1.25;
+      margin: 0 0 28px 0;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .buttons {
+      position: relative;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
     }
 
     button {
-  padding: 15px 30px;
-  font-size: 18px;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
+      padding: 14px 28px;
+      font-size: 18px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: transform 0.08s ease;
+      user-select: none;
+    }
+
+    button:active {
+      transform: scale(0.98);
     }
 
     #yes {
       background-color: #ff4d6d;
-      color: white;
-      left: 45%;
+      color: #fff;
     }
 
     #no {
-      background-color: white;
+      background-color: #fff;
       color: #ff4d6d;
+      position: absolute; /* нужно для "убегания" */
+      left: 140px;        /* стартовая позиция рядом с ДА */
+      top: 0px;
     }
   </style>
 </head>
 <body>
 
   <h1>
-    Биргит, даже если я не всегда рядом,знай я всегда у тебя есть ,<br>
-    Я тебя очень сильно люблю!! 💕<br><br>
+    Биргит, даже если я не всегда рядом, знай — я всегда у тебя есть,<br>
+    я тебя очень сильно люблю!! 💕<br><br>
     Ты будешь моей Валентинкой?
   </h1>
 
-  <button id="Да" onclick="yesClicked()">ДА ❤️</button>
-  <button id="Нет" onmouseover="moveNo()">НЕТ 😢</button>
+  <div class="buttons">
+    <button id="yes" onclick="yesClicked()">ДА ❤️</button>
+    <button id="no" onmouseover="moveNo()">НЕТ 😢</button>
+  </div>
 
   <script>
     function moveNo() {
-      const x = Math.random() * (window.innerWidth - 100);
-      const y = Math.random() * (window.innerHeight - 50);
-      document.getElementById("no").style.left = x + "px";
-      document.getElementById("no").style.top = y + "px";
+      const btn = document.getElementById("no");
+      const padding = 20;
+
+      const maxX = window.innerWidth - btn.offsetWidth - padding;
+      const maxY = window.innerHeight - btn.offsetHeight - padding;
+
+      const x = Math.random() * (maxX - padding) + padding;
+      const y = Math.random() * (maxY - padding) + padding;
+
+      btn.style.left = x + "px";
+      btn.style.top = y + "px";
     }
 
     function yesClicked() {
-      document.body.innerHTML = "<h1>Я так и знал!!! ❤️ Happy Valentine’s Day 💘</h1>";
+      document.body.innerHTML =
+        "<h1 style='text-align:center;color:#fff;font-family:Arial,sans-serif;text-shadow:0 2px 16px rgba(0,0,0,0.12);'>Я так и знал!!! ❤️<br><br>Happy Valentine’s Day 💘</h1>";
     }
   </script>
 
